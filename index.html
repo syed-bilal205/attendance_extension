@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent" />
+    <title>Attendance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- 
+      GOOGLE FONTS
+    -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet" />
+    <!-- 
+      CUSTOM CSS  
+    -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="logo">ATT<span>//</span>TRACK</div>
+        <div class="time-display" id="clock">--:--</div>
+      </header>
+
+      <!-- LOGIN SCREEN -->
+      <div class="screen active" id="screen-login">
+        <div class="login-hero">
+          <h1>Sign in<span class="accent-line">to work.</span></h1>
+          <p>// attendance system</p>
+        </div>
+        <div class="card">
+          <div class="field">
+            <label>Admin ID</label>
+            <input
+              type="text"
+              id="inp-adminid"
+              placeholder="your_admin_id"
+              autocomplete="username"
+              autocapitalize="none" />
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input
+              type="password"
+              id="inp-password"
+              placeholder="••••••••"
+              autocomplete="current-password" />
+          </div>
+          <div class="field">
+            <button class="btn btn-accent" id="btn-login" onclick="doLogin()">
+              Login
+            </button>
+          </div>
+          <div class="alert" id="login-alert"></div>
+        </div>
+        <div class="footer">secured via google apps script</div>
+      </div>
+
+      <!-- MAIN SCREEN -->
+      <div class="screen" id="screen-main">
+        <div class="user-bar">
+          <div class="user-info">
+            <div class="avatar" id="main-avatar">?</div>
+            <div>
+              <div class="user-name" id="main-name">—</div>
+              <div class="user-role" id="main-role">—</div>
+            </div>
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="doLogout()">
+            Logout
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Today's attendance</div>
+          <div id="status-badge-area">
+            <span class="status-badge badge-none">Loading...</span>
+          </div>
+          <div id="stats-area"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Actions</div>
+          <div class="action-buttons">
+            <button
+              class="btn btn-accent"
+              id="btn-signin"
+              onclick="doSignIn()"
+              disabled>
+              Sign In
+            </button>
+            <button
+              class="btn btn-danger"
+              id="btn-signout"
+              onclick="showReasonScreen()"
+              disabled>
+              Sign Out
+            </button>
+          </div>
+          <button
+            class="btn btn-ghost"
+            id="btn-refresh"
+            onclick="loadAttendance()"
+            style="margin-top: 10px; font-size: 13px; padding: 10px">
+            Refresh status
+          </button>
+          <div class="alert" id="action-alert"></div>
+        </div>
+        <div class="footer">att//track &mdash; mobile</div>
+      </div>
+
+      <!-- SIGN OUT REASON SCREEN -->
+      <div class="screen" id="screen-reason">
+        <button class="back-btn" onclick="hideReasonScreen()">
+          <svg
+            viewBox="0 0 14 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M9 2L4 7L9 12"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          Back
+        </button>
+        <div class="reason-title">Sign out</div>
+        <div class="reason-sub">// optional reason</div>
+        <div class="card">
+          <div class="field">
+            <label>Reason type</label>
+            <select id="inp-reason-type">
+              <option value="">None / Not specified</option>
+              <option value="break">Break</option>
+              <option value="lunch">Lunch</option>
+              <option value="end_of_day">End of day</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Notes (optional)</label>
+            <textarea
+              id="inp-reason-text"
+              placeholder="Any additional notes..."></textarea>
+          </div>
+          <div class="field">
+            <button
+              class="btn btn-danger"
+              id="btn-confirm-signout"
+              onclick="doSignOut()">
+              Confirm sign out
+            </button>
+          </div>
+          <div class="alert" id="reason-alert"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
