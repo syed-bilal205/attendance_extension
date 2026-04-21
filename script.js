@@ -1,8 +1,5 @@
 const API =
-  "https://api.allorigins.win/raw?url=" +
-  encodeURIComponent(
-    "https://script.google.com/macros/s/AKfycbxu1zvIA5WME7s4EbxHCN5SZQn-fY3hM8g4gKqDwt5_he-GoAPVdph6P1v72v9YNSAzzw/exec",
-  );
+  "https://script.google.com/macros/s/AKfycbxu1zvIA5WME7s4EbxHCN5SZQn-fY3hM8g4gKqDwt5_he-GoAPVdph6P1v72v9YNSAzzw/exec";
 
 let sessionToken = "",
   meAdminId = "",
@@ -42,8 +39,9 @@ function hideAlert(id) {
 async function postAPI(body) {
   const r = await fetch(API, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    cache: "no-cache",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8",
+    },
     body: JSON.stringify(body),
   });
   const text = await r.text();
