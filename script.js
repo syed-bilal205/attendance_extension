@@ -1,5 +1,9 @@
 const API =
-  "https://corsproxy.io/?https://script.google.com/macros/s/AKfycbxu1zvIA5WME7s4EbxHCN5SZQn-fY3hM8g4gKqDwt5_he-GoAPVdph6P1v72v9YNSAzzw/exec";
+  "https://api.allorigins.win/raw?url=" +
+  encodeURIComponent(
+    "https://script.google.com/macros/s/AKfycbxu1zvIA5WME7s4EbxHCN5SZQn-fY3hM8g4gKqDwt5_he-GoAPVdph6P1v72v9YNSAzzw/exec",
+  );
+
 let sessionToken = "",
   meAdminId = "",
   meName = "",
